@@ -112,10 +112,32 @@ Após a compilação, o firmware pode ser carregado no dispositivo ESP32 com o c
 ```bash
 idf.py -p PORT flash
 ```
+
+Existem outros comandos como execuar o monitor serial via terminal:
+ 
+```bash
+idf.py -p PORT monitor
+
+```
+
+Executar os dois comandos de uma vez: 
+
+```bash
+idf.py -p PORT flash monitor
+
+```
+
 Substitua `PORT` pela porta serial em que seu ESP32 está conectado. Esse comando faz o flash do firmware gerado no dispositivo, permitindo que o modelo seja executado diretamente no chip.
+
+Para visualizar a porta ao qual o seu dispositivo está conectado no windows pode digitar via cmd 
+
+```bash
+mode 
+```
 
 ---
 
+ 
 ## Conclusão
 
 Após concluir os passos acima, o projeto estará pronto para compilar, flashar e executar no seu dispositivo. Se encontrar dificuldades, revise as configurações do ambiente ou consulte a documentação oficial.
