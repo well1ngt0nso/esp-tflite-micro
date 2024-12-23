@@ -1,11 +1,15 @@
-# esp-tflite-micro
+# esp-tflite-micro via terminal ESP-IDF
+(tem outro artigo sobre a ide [aqui]())
 
 Executando os exemplos disponibilizados pela Espressif para inserção de modelos em seus chips. Estou montando este repositório porque, ao tentar executar os exemplos, mesmo os mais simples, erros frequentes surgiam. Isso pode ser frustrante, considerando a importância de rodar esses exemplos como base para outros projetos.
 
 Embora não seja a única forma de aprender a utilizar uma biblioteca, a documentação disponível é bastante limitada. Os exemplos encontrados, em sua maioria, eram para versões muito antigas ou apresentavam uma complexidade desnecessária.
 
-[esp-tflite-micro](https://github.com/espressif/esp-tflite-micro):  
-<img alt="Static Badge" src="https://img.shields.io/badge/vers%C3%A3o%20atual%20-%201.3.2%20-blue?style=flat">
+[esp-tflite-micro](https://github.com/espressif/esp-tflite-micro):  <img alt="Static Badge" src="https://img.shields.io/badge/vers%C3%A3o%20atual%20-%201.3.2%20-blue?style=flat">
+
+ESP-IDF:  <img alt="Static Badge" src="https://img.shields.io/badge/vers%C3%A3o%20atual%20-%205.3%20-blue?style=flat">
+
+Espressif-IDE:  <img alt="Static Badge" src="https://img.shields.io/badge/vers%C3%A3o%20atual%20-%203.1.0%20-blue?style=flat">
 
 ---
 
@@ -31,6 +35,46 @@ O repositório `esp-tflite-micro` fornece alguns exemplos básicos para você co
 Esses exemplos servem como base para que você possa criar seus próprios projetos de machine learning com ESP32. 
 
 ---
+
+
+## Principais erros
+
+- **Instalar a IDE separada do framework ESP-IDF**: A IDE "puxa" o conjunto de ferramentas da IDF utilizando especificamente o conceito de variáveis de ambiente. Ou seja, quando a IDE precisa acessar uma funcionalidade, ela tenta executar essas variáveis. Se o sistema foi instalado em conjunto, toda essa configuração já foi feita, teoricamente.
+
+- **Omitir erros no início da instalação**: Acabei não capturando, mas em uma certa aba da instalação aparece algo semelhante a uma lista:
+
+```text
+  * Iniciando verificação do sistema ...
+  * Windows version: 10.00.22631 [OK]
+  * Verificando registro "LongPathsEnabled" no sistema  [WARN]
+  * Dica: 
+  Por favor, altere o registro HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled para 1. A operação requer privilégios de administrador. Comando:
+  powershell -Command "&{ Start-Process -FilePath reg 'ADD HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f' -Verb runAs}"
+  Clique em 'Aplicar Correções' após a verificação do sistema.
+  * Active code page: 850
+  * Detected antivirus: Windows Defender
+  * Environment variables (PATHEXT) . [OK]
+  * Verificação completa.
+```
+  Isso pode levar a um erro devido a um conjunto de fatores: alguns "OKs", "Verificação completa" e um botão "Next" (algo do tipo). Porém, logo acima aparece um botão "Corrigir erro". A correção desse erro fica a critério do desenvolvedor, e eu recomendo corrigi-lo.
+
+  Para corrigir, é simples: abra o PowerShell e digite o código sugerido. Depois, volte à aba e clique em "Corrigir erro".
+
+```text
+  * Starting application of fixes.
+  * Correções aplicadas com sucesso.
+  * Iniciando verificação do sistema ...
+  * Windows version: 10.00.22631 [OK]
+  * Verificando registro "LongPathsEnabled" no sistema  [OK]
+  * Active code page: 850
+  * Detected antivirus: Windows Defender
+  * Environment variables (PATHEXT) . [OK]
+  * Verificação completa.
+```
+
+- **PATH**: A maioria dos erros que surgem está relacionada com o **PATH**. Caso ocorra, basta pesquisar onde está localizado o executável da aplicação e inserir o caminho nas variáveis de ambiente.
+
+  
 
 ## Exemplo: `hello_world`
 
@@ -144,4 +188,4 @@ Após concluir os passos acima, o projeto estará pronto para compilar, flashar 
 
 A partir daqui, você pode começar a modificar os exemplos para se adequar às suas necessidades e explorar os diferentes modelos disponíveis no `esp-tflite-micro`.
 
-mode
+[Como executar da IDE]()
